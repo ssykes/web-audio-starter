@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Audio starter</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --line: #27272a;
+        --dim: #a1a1aa;
+        --text: #e4e4e7;
+        --accent: #fbbf24;
+      }
+      body {
+        margin: 0;
+        background: #09090b;
+        color: var(--text);
+        font: 14px/1.5 ui-sans-serif, system-ui, sans-serif;
+      }
+      main {
+        max-width: 44rem;
+        margin: 0 auto;
+        padding: 2.5rem 1.25rem 4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+      h1 {
+        font-size: 1rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--dim);
+        margin: 0;
+      }
+      p.lede {
+        color: var(--dim);
+        margin: 0;
+      }
+      button {
+        align-self: flex-start;
+        border: 1px solid var(--accent);
+        background: color-mix(in srgb, var(--accent) 12%, transparent);
+        color: var(--accent);
+        border-radius: 0.4rem;
+        padding: 0.5rem 1rem;
+        font: inherit;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      button:hover {
+        background: color-mix(in srgb, var(--accent) 22%, transparent);
+      }
+      fieldset {
+        border: 1px solid var(--line);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin: 0;
+        display: grid;
+        gap: 0.75rem;
+      }
+      legend {
+        color: var(--dim);
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 0 0.35rem;
+      }
+      label {
+        display: grid;
+        grid-template-columns: 9rem 1fr 4.5rem;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      label span.name {
+        color: var(--dim);
+        font-size: 0.8rem;
+      }
+      label output {
+        font-variant-numeric: tabular-nums;
+        text-align: right;
+        font-size: 0.8rem;
+      }
+      input[type="range"] {
+        width: 100%;
+        accent-color: var(--accent);
+      }
+      code {
+        color: var(--dim);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Web Audio starter</h1>
+      <p class="lede">
+        One pad voice per chord note, each a unison stack detuned by rate compensation, through the
+        effect chain the registry declares. Press start — a browser will not create an audio context
+        until you do.
+      </p>
+
+      <button id="toggle" type="button">Start</button>
+
+      <fieldset>
+        <legend>Voice</legend>
+        <label>
+          <span class="name">unison voices</span>
+          <input id="unison" type="range" min="1" max="8" step="1" value="3" />
+          <output id="unisonOut">3</output>
+        </label>
+        <label>
+          <span class="name">detune</span>
+          <input id="detune" type="range" min="0" max="50" step="0.5" value="12" />
+          <output id="detuneOut">12.0</output>
+        </label>
+        <label>
+          <span class="name">amplitude</span>
+          <input id="amp" type="range" min="0" max="1.5" step="0.01" value="0.7" />
+          <output id="ampOut">0.70</output>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Effect chain</legend>
+        <label>
+          <span class="name">cutoff</span>
+          <input id="cutoff" type="range" min="60" max="16000" step="1" value="1800" />
+          <output id="cutoffOut">1800</output>
+        </label>
+        <label>
+          <span class="name">width</span>
+          <input id="width" type="range" min="0" max="2" step="0.01" value="1.4" />
+          <output id="widthOut">1.40</output>
+        </label>
+        <label>
+          <span class="name">reverb mix</span>
+          <input id="mix" type="range" min="0" max="1" step="0.01" value="0.3" />
+          <output id="mixOut">0.30</output>
+        </label>
+      </fieldset>
+
+      <p class="lede">
+        The chain is rebuilt only when its fingerprint changes; the sliders above slew parameters on
+        the stages already built. See <code>example/main.ts</code>.
+      </p>
+    </main>
+    <script type="module" src="/example/main.ts"></script>
+  </body>
+</html>
